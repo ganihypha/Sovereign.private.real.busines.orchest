@@ -1,7 +1,8 @@
 // ============================================================
-// Sovereign Private Business Orchestrator v1.0
-// Engine: Sovereign | Private Command Center
-// 3-Layer Business Orchestration for FashionKas
+// SOVEREIGN BUSINESS ENGINE v2.0
+// The Real Market Validated Data Orchestrator
+// 3-Layer Validation: Demand | System | Trust
+// Identity: Business Engineering & Market Validation Systems
 // ============================================================
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
@@ -14,6 +15,7 @@ import { scoutRoutes } from './routes/scout'
 import { closerRoutes } from './routes/closer'
 import { catalogRoutes } from './routes/catalog'
 import { reportsRoutes } from './routes/reports'
+import { validationRoutes } from './routes/validation'
 import { landingPage } from './pages/landing'
 import { loginPage } from './pages/login'
 import { dashboardPage } from './pages/dashboard'
@@ -25,6 +27,7 @@ import { closerPage } from './pages/closer'
 import { reportsPage } from './pages/reports'
 import { catalogPublicPage } from './pages/catalog'
 import { settingsPage } from './pages/settings'
+import { validationPage } from './pages/validation'
 
 export interface Env {
   SUPABASE_URL: string
@@ -45,11 +48,16 @@ app.use('/api/*', cors())
 app.get('/api/health', (c) => {
   return c.json({
     status: 'ok',
-    app: 'Sovereign Private Orchestrator',
-    engine: 'FashionKas',
-    version: '1.0',
-    build: '2026-03-30',
-    layers: ['Brand (@fashionkas.official)', 'Growth (@resellerkas.official)', 'Founder (@haidar_faras_m)']
+    app: 'Sovereign Business Engine',
+    identity: 'Market Validated Data Orchestrator',
+    version: '2.0',
+    build: '2026-03-31',
+    validationLayers: {
+      demand: { brand: '@fashionkas.official', role: 'Demand Validation', status: 'active' },
+      system: { brand: '@resellerkas.official', role: 'System/Scale Validation', status: 'active' },
+      trust: { brand: '@haidar_faras_m', role: 'Trust/Authority Validation', status: 'active' }
+    },
+    engineStack: ['Intelligence Layer', 'Communication Layer', 'Data Layer', 'Validation Layer']
   })
 })
 
@@ -63,12 +71,14 @@ app.route('/api/scout', scoutRoutes)
 app.route('/api/closer', closerRoutes)
 app.route('/api/catalog', catalogRoutes)
 app.route('/api/reports', reportsRoutes)
+app.route('/api/validation', validationRoutes)
 
 // Page Routes
 app.get('/', (c) => c.html(landingPage()))
 app.get('/login', (c) => c.html(loginPage()))
 app.get('/app', (c) => c.html(dashboardPage()))
 app.get('/app/dashboard', (c) => c.html(dashboardPage()))
+app.get('/app/validation', (c) => c.html(validationPage()))
 app.get('/app/products', (c) => c.html(productsPage()))
 app.get('/app/orders', (c) => c.html(ordersPage()))
 app.get('/app/customers', (c) => c.html(customersPage()))

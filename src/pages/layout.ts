@@ -1,9 +1,10 @@
-// Sovereign Layout - Glassmorphism Dark Theme
-// Private Command Center UI
+// Sovereign Business Engine v2.0 - Layout
+// Market Validated Data Orchestrator UI
 
 export function sovereignLayout(title: string, content: string, activePage: string = 'dashboard'): string {
   const nav = [
     { id: 'dashboard', label: 'Command Center', icon: 'fa-satellite-dish', href: '/app/dashboard' },
+    { id: 'validation', label: 'Market Validation', icon: 'fa-flask-vial', href: '/app/validation' },
     { id: 'scout', label: 'Scout Agent', icon: 'fa-crosshairs', href: '/app/scout' },
     { id: 'closer', label: 'Closer Agent', icon: 'fa-bullseye', href: '/app/closer' },
     { id: 'products', label: 'Inventory', icon: 'fa-boxes-stacked', href: '/app/products' },
@@ -95,17 +96,17 @@ export function sovereignLayout(title: string, content: string, activePage: stri
         </div>
         <div>
           <div class="font-bold text-sm text-white">Sovereign</div>
-          <div class="text-[10px] text-purple-400 mono">PRIVATE ORCHESTRATOR</div>
+          <div class="text-[10px] text-purple-400 mono">BUSINESS ENGINE v2.0</div>
         </div>
       </div>
       
-      <div class="text-[10px] uppercase tracking-widest text-gray-600 px-4 mb-1">Orchestration</div>
+      <div class="text-[10px] uppercase tracking-widest text-gray-600 px-4 mb-1">Engine Control</div>
       ${navItems}
       
       <div class="mt-auto pt-4 border-t border-white/5">
         <div class="flex items-center gap-2 px-4 py-2">
           <div class="pulse-dot"></div>
-          <span class="text-xs text-green-400 mono">SYSTEM ONLINE</span>
+          <span class="text-xs text-green-400 mono">ENGINE v2.0</span>
         </div>
         <button onclick="logout()" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:text-red-400 hover:bg-red-500/5 transition-all w-full">
           <i class="fas fa-right-from-bracket w-5 text-center"></i>
@@ -130,7 +131,7 @@ export function sovereignLayout(title: string, content: string, activePage: stri
         <div class="flex items-center gap-3">
           <div class="hidden md:flex items-center gap-2 glass-card px-3 py-2">
             <div class="pulse-dot"></div>
-            <span class="text-xs mono text-gray-400">v1.0</span>
+            <span class="text-xs mono text-gray-400">v2.0 MVD</span>
           </div>
         </div>
       </div>

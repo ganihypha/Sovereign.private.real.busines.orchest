@@ -1,5 +1,6 @@
 -- =====================================================
--- SOVEREIGN PRIVATE ORCHESTRATOR - Supabase Schema
+-- SOVEREIGN BUSINESS ENGINE v2.0 - Supabase Schema
+-- Market Validated Data Orchestrator
 -- Run this in Supabase SQL Editor
 -- =====================================================
 
@@ -117,3 +118,48 @@ CREATE POLICY "Service role full access" ON orders FOR ALL USING (true) WITH CHE
 CREATE POLICY "Service role full access" ON leads FOR ALL USING (true) WITH CHECK (true);
 CREATE POLICY "Service role full access" ON outreach_campaigns FOR ALL USING (true) WITH CHECK (true);
 CREATE POLICY "Service role full access" ON outreach_logs FOR ALL USING (true) WITH CHECK (true);
+
+-- =====================================================
+-- MARKET VALIDATION INTELLIGENCE (v2.0)
+-- =====================================================
+
+-- Validation Events - Log every market validation observation
+CREATE TABLE IF NOT EXISTS validation_events (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  layer TEXT NOT NULL DEFAULT 'demand' CHECK (layer IN ('demand', 'system', 'trust')),
+  event_type TEXT DEFAULT 'observation' CHECK (event_type IN ('observation', 'milestone', 'feedback', 'conversion', 'insight', 'proof')),
+  title TEXT NOT NULL,
+  description TEXT DEFAULT '',
+  data_value NUMERIC,
+  source TEXT DEFAULT 'manual',
+  impact TEXT DEFAULT 'medium' CHECK (impact IN ('low', 'medium', 'high', 'critical')),
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Validation Metrics - Track quantitative market data
+CREATE TABLE IF NOT EXISTS validation_metrics (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  layer TEXT NOT NULL DEFAULT 'demand' CHECK (layer IN ('demand', 'system', 'trust')),
+  metric_name TEXT NOT NULL,
+  metric_value NUMERIC DEFAULT 0,
+  unit TEXT DEFAULT 'count',
+  notes TEXT DEFAULT '',
+  recorded_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Indexes for validation tables
+CREATE INDEX IF NOT EXISTS idx_val_events_layer ON validation_events(layer);
+CREATE INDEX IF NOT EXISTS idx_val_events_type ON validation_events(event_type);
+CREATE INDEX IF NOT EXISTS idx_val_events_created ON validation_events(created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_val_events_impact ON validation_events(impact);
+CREATE INDEX IF NOT EXISTS idx_val_metrics_layer ON validation_metrics(layer);
+CREATE INDEX IF NOT EXISTS idx_val_metrics_name ON validation_metrics(metric_name);
+CREATE INDEX IF NOT EXISTS idx_val_metrics_recorded ON validation_metrics(recorded_at DESC);
+
+-- RLS for validation tables
+ALTER TABLE validation_events ENABLE ROW LEVEL SECURITY;
+ALTER TABLE validation_metrics ENABLE ROW LEVEL SECURITY;
+
+-- Service role access for validation tables
+CREATE POLICY "Service role full access" ON validation_events FOR ALL USING (true) WITH CHECK (true);
+CREATE POLICY "Service role full access" ON validation_metrics FOR ALL USING (true) WITH CHECK (true);

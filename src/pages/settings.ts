@@ -37,23 +37,27 @@ export function settingsPage(): string {
         </div>
       </div>
       <div class="glass-card p-5 md:col-span-2">
-        <h3 class="font-bold text-sm mb-4"><i class="fas fa-satellite-dish mr-2 text-yellow-400"></i>3-Layer Orchestration Status</h3>
+        <h3 class="font-bold text-sm mb-4"><i class="fas fa-flask-vial mr-2 text-yellow-400"></i>3-Layer Market Validation Architecture</h3>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div class="p-4 rounded-xl bg-purple-500/5 border border-purple-500/10">
-            <div class="flex items-center gap-2 mb-2"><div class="pulse-dot"></div><span class="text-xs mono text-purple-300">LAYER 1 - BRAND</span></div>
+            <div class="flex items-center gap-2 mb-2"><div class="pulse-dot"></div><span class="text-xs mono text-purple-300">LAYER 1 - DEMAND</span></div>
             <div class="font-bold text-white">@fashionkas.official</div>
-            <div class="text-xs text-gray-400 mt-1">Revenue Engine - Konversi traffic ke user berbayar</div>
+            <div class="text-xs text-gray-400 mt-1">Product-Market Fit - Validasi kebutuhan pasar reseller</div>
           </div>
           <div class="p-4 rounded-xl bg-green-500/5 border border-green-500/10">
-            <div class="flex items-center gap-2 mb-2"><div class="pulse-dot"></div><span class="text-xs mono text-green-300">LAYER 2 - GROWTH</span></div>
+            <div class="flex items-center gap-2 mb-2"><div class="pulse-dot"></div><span class="text-xs mono text-green-300">LAYER 2 - SYSTEM</span></div>
             <div class="font-bold text-white">@resellerkas.official</div>
-            <div class="text-xs text-gray-400 mt-1">Community & UGC - Edukasi reseller</div>
+            <div class="text-xs text-gray-400 mt-1">Scale Validation - Validasi sistem pertumbuhan & skala</div>
           </div>
           <div class="p-4 rounded-xl bg-yellow-500/5 border border-yellow-500/10">
-            <div class="flex items-center gap-2 mb-2"><div class="pulse-dot"></div><span class="text-xs mono text-yellow-300">LAYER 3 - FOUNDER</span></div>
+            <div class="flex items-center gap-2 mb-2"><div class="pulse-dot"></div><span class="text-xs mono text-yellow-300">LAYER 3 - TRUST</span></div>
             <div class="font-bold text-white">@haidar_faras_m</div>
-            <div class="text-xs text-gray-400 mt-1">Trust Engine - Build in Public authority</div>
+            <div class="text-xs text-gray-400 mt-1">Authority Validation - Sovereign Engineer identity</div>
           </div>
+        </div>
+        <div class="mt-4 p-3 rounded-xl bg-white/[0.02] border border-white/5">
+          <div class="mono text-[10px] text-purple-400 mb-1">SOVEREIGN BUSINESS ENGINE v2.0</div>
+          <div class="text-xs text-gray-400">Identity: Business Engineering & Market Validation Systems. Not selling fashion — selling Orchestration Engine with battle-tested proof.</div>
         </div>
       </div>
     </div>

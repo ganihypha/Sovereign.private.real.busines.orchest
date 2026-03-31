@@ -1,42 +1,42 @@
-// Dashboard Page - Sovereign Command Center
+// Dashboard Page - Sovereign Business Engine v2.0 Command Center
 import { sovereignLayout } from './layout'
 
 export function dashboardPage(): string {
   const content = `
-    <!-- 3-Layer Status -->
+    <!-- 3-Layer Validation Status -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-      <div class="glass-card p-5 glow-purple">
+      <div class="glass-card p-5 glow-purple border-l-2 border-purple-500">
         <div class="flex items-center justify-between mb-3">
           <div class="flex items-center gap-2">
             <i class="fas fa-store text-purple-400"></i>
-            <span class="text-xs text-gray-400 mono">BRAND MACHINE</span>
+            <span class="text-xs text-gray-400 mono">DEMAND VALIDATION</span>
           </div>
           <div class="pulse-dot"></div>
         </div>
         <div class="font-bold text-white">@fashionkas.official</div>
-        <div class="text-xs text-purple-300 mt-1">Revenue Engine | Active</div>
+        <div class="text-xs text-purple-300 mt-1">Product-Market Fit | Active</div>
       </div>
-      <div class="glass-card p-5">
+      <div class="glass-card p-5 border-l-2 border-green-500">
         <div class="flex items-center justify-between mb-3">
           <div class="flex items-center gap-2">
             <i class="fas fa-rocket text-green-400"></i>
-            <span class="text-xs text-gray-400 mono">GROWTH ENGINE</span>
+            <span class="text-xs text-gray-400 mono">SYSTEM VALIDATION</span>
           </div>
           <div class="pulse-dot"></div>
         </div>
         <div class="font-bold text-white">@resellerkas.official</div>
-        <div class="text-xs text-green-300 mt-1">Community & UGC | Active</div>
+        <div class="text-xs text-green-300 mt-1">Scale & Growth Proof | Active</div>
       </div>
-      <div class="glass-card p-5">
+      <div class="glass-card p-5 border-l-2 border-yellow-500">
         <div class="flex items-center justify-between mb-3">
           <div class="flex items-center gap-2">
             <i class="fas fa-user-tie text-yellow-400"></i>
-            <span class="text-xs text-gray-400 mono">TRUST ENGINE</span>
+            <span class="text-xs text-gray-400 mono">TRUST VALIDATION</span>
           </div>
           <div class="pulse-dot"></div>
         </div>
         <div class="font-bold text-white">@haidar_faras_m</div>
-        <div class="text-xs text-yellow-300 mt-1">Founder Authority | Active</div>
+        <div class="text-xs text-yellow-300 mt-1">Authority & Social Proof | Active</div>
       </div>
     </div>
 
@@ -101,7 +101,7 @@ export function dashboardPage(): string {
     </div>
 
     <!-- Recent Activity -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
       <div class="glass-card p-5">
         <div class="flex items-center justify-between mb-4">
           <h3 class="font-bold text-sm"><i class="fas fa-receipt mr-2 text-purple-400"></i>Recent Orders</h3>
@@ -118,6 +118,32 @@ export function dashboardPage(): string {
         </div>
         <div id="recentLeads" class="space-y-3">
           <div class="text-gray-600 text-sm text-center py-4">Loading...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Validation Intelligence Quick View -->
+    <div class="glass-card p-5 border-t-2 border-purple-500">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="font-bold text-sm"><i class="fas fa-flask-vial mr-2 text-purple-400"></i>Market Validation Intelligence</h3>
+        <a href="/app/validation" class="text-xs text-purple-400 hover:text-purple-300 mono">FULL REPORT &rarr;</a>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="p-3 rounded-xl bg-purple-500/5 text-center">
+          <div id="valScore" class="text-xl font-black text-purple-400">-</div>
+          <div class="text-[10px] text-gray-500 mono">VALIDATION</div>
+        </div>
+        <div class="p-3 rounded-xl bg-blue-500/5 text-center">
+          <div id="valData" class="text-xl font-black text-blue-400">-</div>
+          <div class="text-[10px] text-gray-500 mono">DATA POINTS</div>
+        </div>
+        <div class="p-3 rounded-xl bg-green-500/5 text-center">
+          <div class="text-xl font-black text-green-400">3</div>
+          <div class="text-[10px] text-gray-500 mono">ACTIVE LAYERS</div>
+        </div>
+        <div class="p-3 rounded-xl bg-yellow-500/5 text-center">
+          <div id="valStatus" class="text-sm font-bold text-yellow-300 py-1">-</div>
+          <div class="text-[10px] text-gray-500 mono">ENGINE STATUS</div>
         </div>
       </div>
     </div>
@@ -176,7 +202,16 @@ export function dashboardPage(): string {
             \`).join('');
         }
       }
+      async function loadValidQuick() {
+        const r = await apiFetch('/api/validation/stats');
+        if (r?.success) {
+          document.getElementById('valScore').textContent = r.data.engineHealth.validationScore + '%';
+          document.getElementById('valData').textContent = r.data.engineHealth.dataPoints;
+          document.getElementById('valStatus').textContent = r.data.engineHealth.status;
+        }
+      }
       loadDashboard();
+      loadValidQuick();
     </script>
   `
   return sovereignLayout('Command Center', content, 'dashboard')
