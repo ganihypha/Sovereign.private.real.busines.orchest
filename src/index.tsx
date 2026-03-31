@@ -16,6 +16,7 @@ import { closerRoutes } from './routes/closer'
 import { catalogRoutes } from './routes/catalog'
 import { reportsRoutes } from './routes/reports'
 import { validationRoutes } from './routes/validation'
+import { crewaiRoutes } from './routes/crewai'
 import { landingPage } from './pages/landing'
 import { loginPage } from './pages/login'
 import { dashboardPage } from './pages/dashboard'
@@ -37,6 +38,8 @@ export interface Env {
   JWT_SECRET: string
   SCRAPER_API_KEY: string
   FONNTE_TOKEN?: string
+  CREWAI_AMP_URL?: string
+  CREWAI_AMP_TOKEN?: string
 }
 
 const app = new Hono<{ Bindings: Env }>()
@@ -50,14 +53,20 @@ app.get('/api/health', (c) => {
     status: 'ok',
     app: 'Sovereign Business Engine',
     identity: 'Market Validated Data Orchestrator',
-    version: '2.0',
+    version: '3.0',
     build: '2026-03-31',
     validationLayers: {
       demand: { brand: '@fashionkas.official', role: 'Demand Validation', status: 'active' },
       system: { brand: '@resellerkas.official', role: 'System/Scale Validation', status: 'active' },
       trust: { brand: '@haidar_faras_m', role: 'Trust/Authority Validation', status: 'active' }
     },
-    engineStack: ['Intelligence Layer', 'Communication Layer', 'Data Layer', 'Validation Layer']
+    engineStack: ['AI Intelligence Layer (CrewAI)', 'Intelligence Layer', 'Communication Layer', 'Data Layer', 'Validation Layer'],
+    crewai: {
+      status: 'integrated',
+      agents: 8,
+      studio: 'https://app.crewai.com/studio/v2/projects/1975e35d-5b36-4b73-a4c4-2d4d249a2905/editor',
+      github: 'https://github.com/ganihypha/Crew.ai.sovereign.orchest'
+    }
   })
 })
 
@@ -72,6 +81,7 @@ app.route('/api/closer', closerRoutes)
 app.route('/api/catalog', catalogRoutes)
 app.route('/api/reports', reportsRoutes)
 app.route('/api/validation', validationRoutes)
+app.route('/api/ai', crewaiRoutes)
 
 // Page Routes
 app.get('/', (c) => c.html(landingPage()))
