@@ -1,8 +1,9 @@
 // ============================================================
-// SOVEREIGN BUSINESS ENGINE v2.0
+// SOVEREIGN BUSINESS ENGINE v3.2
 // The Real Market Validated Data Orchestrator
 // 3-Layer Validation: Demand | System | Trust
 // Identity: Business Engineering & Market Validation Systems
+// CrewAI AMP: https://crew-ai-sovereign-orchest-ef50eb91-6c9d-4fc-f916c3e6.crewai.com
 // ============================================================
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
@@ -53,8 +54,8 @@ app.get('/api/health', (c) => {
     status: 'ok',
     app: 'Sovereign Business Engine',
     identity: 'Market Validated Data Orchestrator',
-    version: '3.0',
-    build: '2026-03-31',
+    version: '3.2',
+    build: '2026-04-01',
     validationLayers: {
       demand: { brand: '@fashionkas.official', role: 'Demand Validation', status: 'active' },
       system: { brand: '@resellerkas.official', role: 'System/Scale Validation', status: 'active' },
@@ -96,6 +97,7 @@ app.get('/app/scout', (c) => c.html(scoutPage()))
 app.get('/app/closer', (c) => c.html(closerPage()))
 app.get('/app/reports', (c) => c.html(reportsPage()))
 app.get('/app/settings', (c) => c.html(settingsPage()))
+app.get('/catalog', (c) => c.html(catalogPublicPage('all')))
 app.get('/catalog/:slug', (c) => c.html(catalogPublicPage(c.req.param('slug'))))
 
 // Catch-all for app routes
