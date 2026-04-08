@@ -3,7 +3,7 @@
 **Classification:** Founder-Only / System Architecture
 **Status:** LIVING DOCUMENT — Update setiap ada perubahan arsitektur AI layer
 **Author:** Haidar Faras Maulia | **Company:** PT Waskita Cakrawarti Digital
-**Version:** 1.0 | **Created:** 2026-04-08
+**Version:** 2.0 | **Created:** 2026-04-08 | **Updated:** 2026-04-08
 **Repo:** https://github.com/ganihypha/Sovereign.private.real.busines.orchest
 
 ---
@@ -50,37 +50,64 @@ Satu sesi yang membangun continuity lebih baik dari tiga sesi yang bergerak cepa
 
 ---
 
-## LAYER AI DALAM SISTEM SOVEREIGN
+## 3-LAYER OPERATING MODEL (LOCKED)
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                    FOUNDER                              │
-│              (Haidar Faras Maulia)                      │
+│              SOVEREIGN PRIVATE CHAIR                    │
+│              (Doc 43 — Governance Doctrine)             │
+│  - Ratifikasi doctrine                                  │
+│  - Tidak aktif sebelum Founder ratifikasi              │
 └──────────────────────┬──────────────────────────────────┘
-                       │ intent, judgment, final decision
+                       │ doctrine flows downward
 ┌──────────────────────▼──────────────────────────────────┐
-│           FOUNDER OPERATING COPILOT                     │
-│           (Doc 38 — strategic layer)                    │
-│  - Menangkap intent                                     │
-│  - Mengurangi rebriefing                               │
-│  - Mengkonversi diskusi → decision memo / brief         │
-│  - Melindungi energi founder                           │
+│  LAYER 1 — FOUNDER OPERATING COPILOT (Doc 38)           │
+│  - Menangkap intent Founder                             │
+│  - Melindungi energi Founder                           │
+│  - Mengkonversi diskusi → decisions / briefs / priorities│
+│  - Menjaga continuity founder-facing                    │
 └──────────────────────┬──────────────────────────────────┘
                        │ brief, scope, decision
 ┌──────────────────────▼──────────────────────────────────┐
-│           AI DEV MASTER ARCHITECT / EXECUTOR            │
-│           (MASTER-ARCHITECT-PROMPT-v2.txt)              │
-│  - Execute scoped implementation                        │
-│  - Verify access & credentials first                   │
-│  - Sync living docs after execution                    │
-│  - Never fake verification                             │
+│  LAYER 2 — MASTER ARCHITECT / ORCHESTRATOR (Doc 39 = THIS)│
+│  - Menentukan source-of-truth order                    │
+│  - Mengontrol bootstrap / access / repo / env gate     │
+│  - Mengklasifikasikan file                             │
+│  - Menentukan sync/merge/hold/lock rules               │
+│  - Menyiapkan execution briefs untuk Layer 3            │
+│  - Memastikan hasil eksekusi kembali ke living docs     │
 └──────────────────────┬──────────────────────────────────┘
-                       │ code, commits, doc updates
+                       │ execution brief + gate verdict
 ┌──────────────────────▼──────────────────────────────────┐
-│           REPO + LIVING DOCS                            │
-│           (canonical truth)                             │
+│  LAYER 3 — AI DEV EXECUTOR                              │
+│  - Scan workspace / repo / auth / env (HOME-FIRST RULE) │
+│  - Implementasi dalam scope yang terverifikasi          │
+│  - Test, commit, push, return proof                    │
+│  - Tidak mengambil keputusan strategis sendiri         │
+│  - Tidak mark VERIFIED tanpa bukti                     │
+└──────────────────────┬──────────────────────────────────┘
+                       │ proof, code, commits
+┌──────────────────────▼──────────────────────────────────┐
+│           REPO + LIVING DOCS (Canonical Truth)          │
 └─────────────────────────────────────────────────────────┘
 ```
+
+**Core Formula:**
+```
+Founder intent / current OS state
+→ Layer 1 framing
+→ Layer 2 orchestration
+→ Layer 3 verified execution
+→ proof
+→ living-doc sync
+→ next-session-ready state
+```
+
+**Layer Boundary Rules (Non-Negotiable):**
+- Layer 1 tidak boleh pura-pura jadi raw executor
+- Layer 2 tidak boleh loncat jadi founder-facing tanpa framing
+- Layer 3 tidak boleh mengambil keputusan strategis sendiri
+- Jangan confuse ketiga layer ini
 
 ---
 
@@ -234,18 +261,98 @@ Tidak perlu eskalasi untuk:
 
 ---
 
+---
+
+## HOME-FIRST / UPLOAD-FIRST / BOOTSTRAP-FIRST RULE (LOCKED)
+
+Sebelum APAPUN — verdict repo, verdict auth, verdict env, atau eksekusi — Layer 3 WAJIB:
+
+```
+STEP 1  Activate sandbox — pastikan workspace benar-benar hidup
+STEP 2  Scan /home/user secara penuh
+STEP 3  Scan SEMUA folder upload di bawah /home/user:
+        - /home/user/uploaded_files
+        - /home/user/upload_files
+        - folder sejenis yang mungkin berisi bootstrap/credential
+STEP 4  Klasifikasikan setiap file yang ditemukan:
+        - canon / continuity doc
+        - source doc
+        - reference / comparison doc
+        - credential file
+        - env / dev-vars file
+        - bootstrap / repo setup file
+        - unrelated content / media / asset file
+STEP 5  Setup window:
+        - Jika credential/dev-vars belum diinjeksi, JANGAN keluarkan verdict gagal final
+        - Setup dulu, baru recheck
+STEP 6  Post-setup recheck:
+        - Rerun repo / auth / env / push checks setelah setup
+STEP 7  Baru boleh full workflow / full cycle
+```
+
+**Hard Rule:** Jika /home/user dan semua folder upload BELUM dicek, AI TIDAK BOLEH mengeluarkan verdict akses final.
+
+**Status transisi jika belum selesai:**
+```
+WAITING FOR FULL HOME SCAN / UPLOAD SCAN / DEV VAR SETUP
+```
+
+**Labels yang diizinkan setelah recheck:**
+- `PROCEED FULL REPO-FIRST` — gate lolos penuh
+- `PROCEED WITH LIMITATIONS` — akses parsial
+- `DOC-WORK ONLY` — drafting/sync boleh, eksekusi teknis tidak
+- `BLOCKED PENDING ACCESS` — akses belum cukup
+- `BLOCKED PENDING VALID CREDENTIAL` — credential tidak valid
+- `WAITING FOR FULL HOME SCAN / UPLOAD SCAN / DEV VAR SETUP` — bootstrap belum selesai
+
+---
+
+## LAYER 2 MASTER ORCHESTRATION PROMPT
+
+Prompt resmi untuk Layer 2 tersedia di:
+- `L.1.L.2.L.3.Rborn.1.1.1.txt` Section D (Master Orchestration Prompt — Final)
+- 15 section: 3-layer model, core formula, session type detection, boot order,
+  source-of-truth hierarchy, home-first rule, repo truth gate, doc role governance,
+  source→canon sync, post-execution sync, lock rules, output modes, response structure,
+  success definition, dan final orchestration principle
+
+**Cara pakai:** Paste prompt D sebagai system prompt untuk sesi Architect-mode.
+Layer 3 menerima execution brief dari Layer 2, bukan dari founder langsung.
+
+---
+
+## POST-EXECUTION SYNC RULE (LOCKED)
+
+Setiap hasil eksekusi bermakna WAJIB dievaluasi untuk sync ke living docs:
+
+| Jika Ini Terjadi | Wajib Update |
+|---|---|
+| State resmi berubah / sesi verified | current-handoff.md |
+| NOW/NEXT/LATER berubah | active-priority.md + Doc 41 |
+| Ada bukti baru / deployment | 21-PROOF-TRACKER-LIVE.md |
+| Ada keputusan penting | 19-DECISION-LOG.md |
+| Status/lokasi OS docs berubah | OS-INDEX.md |
+| Layer boundary / kernel rules berubah | Doc 39 (ini) |
+
+**Jangan biarkan hasil eksekusi nyata hanya tersimpan di chat.**
+
+---
+
 ## REFERENSI TERKAIT
 
-- `38-FOUNDER-OPERATING-COPILOT.md` — peran AI dekat founder
-- `40-FOUNDER-BRAIN.md` (Doc 40) — strategic memory founder
-- `41-ACTIVE-PRIORITY.md` (Doc 41) — operating priorities
-- `42-NEW-CONVO-BOOT.md` (Doc 42) — boot orientation
-- `MASTER-ARCHITECT-PROMPT-v2.txt` — execution protocol AI Dev
+- `38-FOUNDER-OPERATING-COPILOT.md` — identity charter Layer 1
+- `40-FOUNDER-BRAIN.md` (Doc 40) — strategic core memory
+- `41-ACTIVE-PRIORITY.md` (Doc 41) — live operating board
+- `42-NEW-CONVO-BOOT.md` (Doc 42) — session entry protocol
+- `43-THE-SOVEREIGN-PRIVATE-CHAIR.md` (Doc 43) — governance doctrine
+- `OS-INDEX.md` — navigation map + status catalog
+- `MASTER-ARCHITECT-PROMPT-v2.txt` — architect session reference
 - `CREDENTIAL-AND-ACCESS-READINESS.md` — access gate detail
 - `current-handoff.md` — operational state anchor
 - `19-DECISION-LOG.md` — ADR / decision history
 
 ---
 
-*Doc 39 | Version 1.0 | Created: 2026-04-08 | Status: DOC-READY — PUSH PENDING*
+*Doc 39 | Version 2.0 | Created: 2026-04-08 | Updated: 2026-04-08 | Status: LIVE*
+*3-layer model, home-first rule, post-execution sync rule — all locked*
 *CLASSIFIED — FOUNDER ACCESS ONLY — PT WASKITA CAKRAWARTI DIGITAL*
